@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        getWeather()
+    }
+
+    private fun getWeather() {
         val latitude = 19.358468
         val longitude = -99.194853
         val lang = getString(R.string.language) // lenguaje español
