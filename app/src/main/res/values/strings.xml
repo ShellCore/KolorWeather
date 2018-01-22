@@ -1,11 +1,13 @@
 <resources>
     <string name="app_name">Kolor Weather</string>
     <string name="no_data">No data</string>
-    <string name="temp_placeholder">0.0 C</string>
-    <string name="precip_placeholder">0.0 %</string>
+    <string name="temp_placeholder">%d °C</string>
+    <string name="precip_placeholder">%d %%</string>
     <string name="temp">TEMP</string>
     <string name="precip">PRECIP</string>
     <string name="btnDaily">Daily Weather</string>
     <string name="btnHourly">Hourly Weather</string>
     <string name="weather_state">Weather state</string>
+    <string name="language">en</string>
+    <string name="units">si</string>
 </resources>

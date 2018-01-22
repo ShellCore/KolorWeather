@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kolor Weather</string>
+    <string name="btnDaily">Clima por día</string>
+    <string name="btnHourly">Clima por hora</string>
+    <string name="weather_state">Estado del clima</string>
+    <string name="language">es</string>
+    <string name="units">si</string>
+</resources>
