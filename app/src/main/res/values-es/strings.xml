@@ -6,4 +6,7 @@
     <string name="weather_state">Estado del clima</string>
     <string name="language">es</string>
     <string name="units">si</string>
+    <string name="no_data">No info</string>
+    <string name="refresh">Actualizar</string>
+    <string name="connection_error">Error de conexión</string>
 </resources>

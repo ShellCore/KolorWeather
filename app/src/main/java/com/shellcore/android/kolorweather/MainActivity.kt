@@ -1,9 +1,9 @@
 package com.shellcore.android.kolorweather
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        txtHumidity.text = getString(R.string.precip_placeholder, 0)
+        txtTemperature.text = getString(R.string.temp_placeholder, 0)
 
         getWeather()
     }
@@ -48,12 +51,19 @@ class MainActivity : AppCompatActivity() {
 
                 },
                 Response.ErrorListener {
-                    Log.i(TAG, "Error en la llamada")
-
+                    displayErrorMessage()
                 }
         )
 
         queue.add(stringRequest)
+    }
+
+    private fun displayErrorMessage() {
+        val snackbar = Snackbar.make(container, getString(R.string.connection_error), Snackbar.LENGTH_INDEFINITE)
+                .setAction(getString(R.string.refresh), {
+                    getWeather()
+                })
+                .show()
     }
 
     private fun buildCurrentWeatherUI(currentWeather: CurrentWeather) {

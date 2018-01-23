@@ -10,4 +10,6 @@
     <string name="weather_state">Weather state</string>
     <string name="language">en</string>
     <string name="units">si</string>
+    <string name="refresh">Refresh</string>
+    <string name="connection_error">Connection error</string>
 </resources>
