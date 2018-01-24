@@ -13,7 +13,10 @@ import com.android.volley.toolbox.Volley
 import com.shellcore.android.kolorweather.R
 import com.shellcore.android.kolorweather.api.API_KEY
 import com.shellcore.android.kolorweather.api.DARK_SKY_URL
-import com.shellcore.android.kolorweather.api.JsonParser
+import com.shellcore.android.kolorweather.api.getDailyWeatherFromJson
+import com.shellcore.android.kolorweather.api.getWeatherFromJson
+import com.shellcore.android.kolorweather.extensions.action
+import com.shellcore.android.kolorweather.extensions.displaySnack
 import com.shellcore.android.kolorweather.models.CurrentWeather
 import com.shellcore.android.kolorweather.models.Day
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,7 +25,6 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
 
     val TAG = MainActivity::class.java.simpleName
-    val jsonParser = JsonParser()
     var days : ArrayList<Day> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,13 +62,10 @@ class MainActivity : AppCompatActivity() {
         val stringRequest = StringRequest(
                 Request.Method.GET,
                 url,
-                Response.Listener<String> { response ->
-
-                    val responseJson = JSONObject(response)
-                    val currentWeather = jsonParser.getWeatherFromJson(responseJson)
-
-                    days = jsonParser.getDailyWeather(responseJson)
-
+                Response.Listener<String> {
+                    val responseJson = JSONObject(it)
+                    val currentWeather = getWeatherFromJson(responseJson)
+                    days = getDailyWeatherFromJson(responseJson)
                     buildCurrentWeatherUI(currentWeather)
 
                 },
@@ -78,12 +77,14 @@ class MainActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
+
+
     private fun displayErrorMessage() {
-        val snackbar = Snackbar.make(main_container, getString(R.string.connection_error), Snackbar.LENGTH_INDEFINITE)
-                .setAction(getString(R.string.refresh), {
-                    getWeather()
-                })
-                .show()
+        main_container.displaySnack(getString(R.string.connection_error), Snackbar.LENGTH_INDEFINITE) {
+            action(getString(R.string.refresh), {
+                getWeather()
+            })
+        }
     }
 
     private fun buildCurrentWeatherUI(currentWeather: CurrentWeather) {
