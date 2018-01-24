@@ -3,6 +3,7 @@ package com.shellcore.android.kolorweather.api
 import com.shellcore.android.kolorweather.extensions.iterator
 import com.shellcore.android.kolorweather.models.CurrentWeather
 import com.shellcore.android.kolorweather.models.Day
+import com.shellcore.android.kolorweather.models.Hour
 import org.json.JSONObject
 
 /**
@@ -36,4 +37,20 @@ fun getDailyWeatherFromJson(response: JSONObject): ArrayList<Day> {
     }
 
     return days
+}
+
+fun getHourlyWeatherFromJson(response: JSONObject): ArrayList<Hour> {
+
+    val hourlyWeatherJson = response.getJSONObject(HOURLY)
+    val hourJsonArray = hourlyWeatherJson.getJSONArray(DATA)
+    val hours = ArrayList<Hour>()
+
+    for (hourJson in hourJsonArray) {
+        val hour = hourJson.getLong(TIME)
+        val temp = hourJson.getDouble(TEMPERATURE)
+        val precip = hourJson.getDouble(PRECIPPROBABILITY)
+        hours.add(Hour(hour, temp, precip))
+    }
+
+    return hours
 }

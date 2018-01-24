@@ -1,17 +1,27 @@
 <resources>
     <string name="app_name">Kolor Weather</string>
+
+    <!--Default-->
     <string name="no_data">No data</string>
+    <string name="connection_error">Network error</string>
     <string name="temp_placeholder">%d °C</string>
     <string name="precip_placeholder">%d %%</string>
     <string name="temp">TEMP</string>
     <string name="precip">PRECIP</string>
-    <string name="btnDaily">Daily Weather</string>
-    <string name="btnHourly">Hourly Weather</string>
-    <string name="weather_state">Weather state</string>
     <string name="language">en</string>
     <string name="units">si</string>
+
+    <!--Main-->
+    <string name="btnDaily">@string/daily_weather</string>
+    <string name="btnHourly">@string/hourly_weather</string>
+    <string name="weather_state">Weather state</string>
     <string name="refresh">Refresh</string>
-    <string name="connection_error">Connection error</string>
+
+    <!--Daily-->
     <string name="daily_weather">Daily Weather</string>
     <string name="summary_of_the_week">Summary of the Week</string>
+
+    <!--Hourly-->
+    <string name="hourly_weather">Hourly Weather</string>
+    <string name="summary_of_the_day">Summary of the Day</string>
 </resources>

@@ -11,14 +11,12 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.shellcore.android.kolorweather.R
-import com.shellcore.android.kolorweather.api.API_KEY
-import com.shellcore.android.kolorweather.api.DARK_SKY_URL
-import com.shellcore.android.kolorweather.api.getDailyWeatherFromJson
-import com.shellcore.android.kolorweather.api.getWeatherFromJson
+import com.shellcore.android.kolorweather.api.*
 import com.shellcore.android.kolorweather.extensions.action
 import com.shellcore.android.kolorweather.extensions.displaySnack
 import com.shellcore.android.kolorweather.models.CurrentWeather
 import com.shellcore.android.kolorweather.models.Day
+import com.shellcore.android.kolorweather.models.Hour
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
@@ -26,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     val TAG = MainActivity::class.java.simpleName
     var days : ArrayList<Day> = ArrayList()
+    var hours : ArrayList<Hour> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +37,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startHourlyActivity(view : View) {
-        val intent = Intent(this, HourlyWeatherActivity::class.java)
+        val intent = Intent(this, HourlyWeatherActivity::class.java).apply {
+            putParcelableArrayListExtra(HourlyWeatherActivity.HOURLY_WEATHER_KEY, hours)
+        }
         startActivity(intent)
     }
 
@@ -66,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                     val responseJson = JSONObject(it)
                     val currentWeather = getWeatherFromJson(responseJson)
                     days = getDailyWeatherFromJson(responseJson)
+                    hours = getHourlyWeatherFromJson(responseJson)
                     buildCurrentWeatherUI(currentWeather)
 
                 },
