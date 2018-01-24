@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.shellcore.android.kolorweather.R
-import com.shellcore.android.kolorweather.R.id.*
 import com.shellcore.android.kolorweather.extensions.inflate
-import com.shellcore.android.kolorweather.models.Day
 import com.shellcore.android.kolorweather.models.Hour
 
 /**
@@ -33,7 +31,8 @@ class HourAdapter(val context : Context, val dataSource : ArrayList<Hour>) : Bas
         holder.apply {
             txtHour.text = currentHour.getFormattedTime()
             txtHourTemp.text = context.getString(R.string.temp_placeholder, currentHour.temp.toInt())
-            txtHourPrecip.text = context.getString(R.string.temp_placeholder, currentHour.precip.toInt())
+            val precipProbability = (currentHour.precip * 100).toInt()
+            txtHourPrecip.text = context.getString(R.string.precip_placeholder, precipProbability)
         }
 
         return view
