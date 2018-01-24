@@ -12,4 +12,6 @@
     <string name="units">si</string>
     <string name="refresh">Refresh</string>
     <string name="connection_error">Connection error</string>
+    <string name="daily_weather">Daily Weather</string>
+    <string name="summary_of_the_week">Summary of the Week</string>
 </resources>

@@ -5,7 +5,7 @@ import com.shellcore.android.kolorweather.R
 /**
  * Created by MOGC on 22/01/2018.
  */
-class CurrentWeather (var icon : String,
+data class CurrentWeather (var icon : String,
                       var summary : String,
                       var temp : Double,
                       var precip : Double) {

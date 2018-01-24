@@ -2,11 +2,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/main_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.shellcore.android.kolorweather.MainActivity">
+    tools:context="com.shellcore.android.kolorweather.UI.MainActivity">
 
 
     <ImageView
@@ -109,6 +109,7 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:onClick="startDailyActivity"
         android:text="@string/btnDaily"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -120,6 +121,7 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:onClick="startHourlyActivity"
         android:text="@string/btnHourly"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
