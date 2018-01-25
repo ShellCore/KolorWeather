@@ -28,7 +28,7 @@ data class Hour(val time : Long,
     }
 
     fun getFormattedTime(): String {
-        val formatted = SimpleDateFormat("HH:mm", Locale.US)
+        val formatted = SimpleDateFormat("HH:mm a", Locale.US)
         val date = Date(time * 1000)
         val dateOfWeek = formatted.format(date)
         return dateOfWeek
