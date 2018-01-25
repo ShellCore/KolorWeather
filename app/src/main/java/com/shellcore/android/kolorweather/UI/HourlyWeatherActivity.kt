@@ -2,8 +2,9 @@ package com.shellcore.android.kolorweather.UI
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import com.shellcore.android.kolorweather.R
-import com.shellcore.android.kolorweather.adapters.HourAdapter
+import com.shellcore.android.kolorweather.adapters.HourRecyclerViewAdapter
 import com.shellcore.android.kolorweather.models.Hour
 import kotlinx.android.synthetic.main.activity_hourly_weather.*
 
@@ -17,11 +18,13 @@ class HourlyWeatherActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hourly_weather)
 
-        val hours: ArrayList<Hour> = intent.getParcelableArrayListExtra(HOURLY_WEATHER_KEY)
-        val hourAdapter = HourAdapter(this, hours)
+        recHourly.layoutManager = LinearLayoutManager(this)
 
-        lsthourly.adapter = hourAdapter
+        intent.let {
 
-        lsthourly.emptyView = txtNoDataHour
+            val hours: ArrayList<Hour> = it.getParcelableArrayListExtra(HOURLY_WEATHER_KEY)
+            recHourly.adapter = HourRecyclerViewAdapter(hours)
+        }
+
     }
 }
